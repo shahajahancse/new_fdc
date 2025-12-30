@@ -1,9 +1,21 @@
 
     {{-- Dashboard --}}
     <li class="nav-item">
-        <a class="nav-link {!! Request::is('/') ? 'active' : '' !!}" aria-current="page" href="{{ url('/dashboard') }}">
+        <a class="nav-link {!! Request::is('dashboard') ? 'active' : '' !!}" aria-current="page" href="{{ url('/dashboard') }}">
             <i class="icon im im-icon-Home"></i>
-            <span class="item-name">{{ __('messages.dashboard') }}</span>
+            <span class="item-name"> Dashboard </span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {!! Request::is('project-entry') ? 'active' : '' !!}" aria-current="page" href="{{ url('/project-entry') }}"> <i class="icon im im-icon-Home"></i> <span class="item-name">Entry Project Details</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {!! Request::is('project-list') ? 'active' : '' !!}" aria-current="page" href="{{ url('/project-list') }}"> <i class="icon im im-icon-Home"></i> <span class="item-name">Project List</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {!! Request::is('/dashboard-set-interval') ? 'active' : '' !!}" aria-current="page" href="{{ url('/dashboard') }}"> <i class="icon im im-icon-Home"></i> <span class="item-name">Set Interval Time</span>
         </a>
     </li>
 

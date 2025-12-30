@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\FilmApplication;
-use App\Models\Producer;
+use App\Models\ProjectDetail;
 use Illuminate\Http\Request;
-use App\Models\Item;
-use App\Models\Upazila;
 use Illuminate\Support\Facades\DB;
-use App\Models\District;
+use Auth;
+use Flash;
+use Response;
 
 class HomeController extends Controller
 {
@@ -29,21 +28,75 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $totalRunningMovies = FilmApplication::where('status', 'running')->count();
-        $totalCompletedMovies = FilmApplication::where('status', 'completed')->count();
-        $moviesAwaitingApproval = FilmApplication::where('status', 'pending')->count();
-        $commercialsAwaitingApproval = FilmApplication::where('status', 'pending')->count();
-        $totalProducerList = Producer::count();
-        $totalApprovedProducerPendingList = Producer::where('status', 'pending')->count();
-
-        return view('index', compact('totalRunningMovies', 'totalCompletedMovies', 'moviesAwaitingApproval', 'commercialsAwaitingApproval', 'totalProducerList', 'totalApprovedProducerPendingList'));
+        return view('index');
     }
 
-    public function get_upazilas(Request $request){
-        $upazilas = Upazila::where('dis_id', $request->district_id)->get(['id', 'name_en as name']);
-        if ($upazilas->isEmpty()) {
-            return response()->json(['message' => __('messages.no_upazilas_found')], 404);
-        }
-        return response()->json($upazilas);
+    public function projectList()
+    {
+        $projectDetails = ProjectDetail::all();
+        return view('project_entry/projectList', compact('projectDetails'));
+    }
+
+    public function projectEntry()
+    {
+        $info = null;
+        return view('project_entry/projectEntry', compact('info'));
+    }
+
+    public function projectStore(Request $request)
+    {
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'producer_name' => 'required|string|max:255',
+            'production_house_name' => 'required|string|max:255',
+            'amount' => 'required|numeric',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date',
+            'status' => 'required|string',
+            'service_type' => 'required|string',
+            'project_description' => 'required|string',
+        ]);
+        // Add created_by (and created_at automatically)
+        $validatedData['created_by'] = Auth::id(); // or auth()->id()
+        // Create a new ProjectDetail record
+        ProjectDetail::create($validatedData);
+
+        Flash::success('Project entry saved successfully!');
+        return redirect()->back();
+    }
+
+    public function projectEdit(Request $request, $id)
+    {
+        $info = ProjectDetail::findOrFail($id);
+        return view('project_entry/projectEntry', compact('info'));
+    }
+
+    public function projectUpdate(Request $request, $id)
+    {
+
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'producer_name' => 'required|string|max:255',
+            'production_house_name' => 'required|string|max:255',
+            'amount' => 'required|numeric',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date',
+            'status' => 'required|string',
+            'service_type' => 'required|string',
+            'project_description' => 'required|string',
+        ]);
+        // Update the ProjectDetail record
+        $validatedData['updated_by'] = Auth::id(); // or auth()->id()
+        ProjectDetail::where('id', $id)->update($validatedData);
+
+        Flash::success('Project entry updated successfully!');
+        return redirect()->back();
+    }
+
+    public function projectDestroy($id)
+    {
+        ProjectDetail::destroy($id);
+        Flash::success('Project entry deleted successfully!');
+        return redirect()->back();
     }
 }
