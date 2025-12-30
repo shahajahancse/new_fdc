@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProjectDetail;
+use App\Models\SetInterval;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
@@ -99,4 +100,51 @@ class HomeController extends Controller
         Flash::success('Project entry deleted successfully!');
         return redirect()->back();
     }
+
+    public function setInterval()
+    {
+        $setIntervals = SetInterval::all();
+        return view('project_entry/setInterval', compact('setIntervals'));
+    }
+
+    public function setEntry()
+    {
+        $info = null;
+        return view('project_entry.setEntry', compact('info'));
+    }
+
+    public function setStore(Request $request)
+    {
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'set_time' => 'required|string|max:255',
+        ]);
+        // Add created_by (and created_at automatically)
+        $validatedData['created_by'] = Auth::id(); // or auth()->id()
+        // Create a new SetInterval record
+        SetInterval::create($validatedData);
+        Flash::success('Set entry saved successfully!');
+        return redirect()->back();
+    }
+
+    public function setEdit(Request $request, $id)
+    {
+        $info = SetInterval::findOrFail($id);
+        return view('project_entry.setEntry', compact('info'));
+    }
+
+    public function setUpdate(Request $request, $id)
+    {
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'set_time' => 'required|string|max:255',
+        ]);
+        // Update the SetInterval record
+        $validatedData['updated_by'] = Auth::id(); // or auth()->id()
+        SetInterval::where('id', $id)->update($validatedData);
+
+        Flash::success('Set entry updated successfully!');
+        return redirect(url('set-interval'));
+    }
 }
+

@@ -27,7 +27,13 @@ Route::get('/project-list', [App\Http\Controllers\HomeController::class, 'projec
 Route::get('/project-edit/{id}', [App\Http\Controllers\HomeController::class, 'projectEdit'])->middleware('auth')->name('project.edit');
 Route::put('/project-update/{id}', [App\Http\Controllers\HomeController::class, 'projectUpdate'])->middleware('auth')->name('project.update');
 Route::delete('/project-destroy/{id}', [App\Http\Controllers\HomeController::class, 'projectDestroy'])->middleware('auth')->name('project.destroy');
-// Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, '
+
+Route::get('/set-interval', [App\Http\Controllers\HomeController::class, 'setInterval'])->middleware('auth');
+Route::get('/set-entry', [App\Http\Controllers\HomeController::class, 'setEntry'])->middleware('auth');
+Route::post('/set-store', [App\Http\Controllers\HomeController::class, 'setStore'])->middleware('auth')->name('set.entry.store');
+Route::get('/set-edit/{id}', [App\Http\Controllers\HomeController::class, 'setEdit'])->middleware('auth')->name('set.edit');
+Route::put('/set-update/{id}', [App\Http\Controllers\HomeController::class, 'setUpdate'])->middleware('auth')->name('set.update');
+
 
 
 

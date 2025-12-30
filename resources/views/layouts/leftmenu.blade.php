@@ -15,7 +15,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {!! Request::is('/dashboard-set-interval') ? 'active' : '' !!}" aria-current="page" href="{{ url('/dashboard') }}"> <i class="icon im im-icon-Home"></i> <span class="item-name">Set Interval Time</span>
+        <a class="nav-link {!! Request::is('set-interval') ? 'active' : '' !!}" aria-current="page" href="{{ url('/set-interval') }}"> <i class="icon im im-icon-Home"></i> <span class="item-name">Set Interval Time</span>
         </a>
     </li>
 
