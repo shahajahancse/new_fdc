@@ -53,7 +53,7 @@
             <div class="form-group">
                 {!! Form::label('service_type', 'Service Type', ['class' => 'control-label']) !!}
                 <span style="color:red">*</span>
-                {!! Form::select('service_type', ['film' => 'Film', 'drama' => 'Drama', 'docufilm' => 'Docu Film', 'realityshow' => 'Reality Show'], null, ['class' => 'form-control', 'placeholder' => 'Select Service Type', 'required' => true]) !!}
+                {!! Form::select('service_type', ['সিনেমা' => 'সিনেমা', 'নাটক' => 'নাটক', 'ডকু ফিল্ম' => 'ডকু ফিল্ম', 'রিয়েলিটি শো' => 'রিয়েলিটি শো'], null, ['class' => 'form-control', 'placeholder' => 'Select Service Type', 'required' => true]) !!}
             </div>
         </div>
 

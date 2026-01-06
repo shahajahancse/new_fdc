@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-    <meta charset="UTF-8">
-    <title>Notice Slider</title>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <style>
         body {
             background: #0b2f2a;
-            padding: 40px 0;
         }
 
         .notice-card {
@@ -104,90 +95,84 @@
             .notice-card { width: 95%; }
         }
     </style>
-</head>
-<body>
 
-<div class="container">
-    <div id="noticeCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
 
-        <div class="carousel-inner">
-            @forelse($results as $key => $row)
-                <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
-                    <div class="slide-content">
+    <div class="container">
+        <div id="noticeCarousel" class="carousel slide" data-ride="carousel" data-interval="{{ $interval }}">
 
-                        <div class="notice-card">
-                            <div class="notice-title">
-                                নির্মাণাধীন সিনেমা / নাটকের সংক্ষিপ্ত তথ্য
-                            </div>
+            <div class="carousel-inner">
+                @forelse($results as $key => $row)
+                    <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                        <div class="slide-content">
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="notice-item">
-                                        <span>প্রযোজকের নাম :</span>
-                                        <span class="amount-box">{{ $row->producer_name }}</span>
-                                    </div>
-                                    <div class="notice-item">
-                                        <span>সেবার ধরণ ও নাম :</span>
-                                        <span class="amount-box">{{ $row->service_type . ' - ' . $row->title }}</span>
-                                    </div>
-                                    <div class="notice-item">
-                                        <span>কাজ শুরুর তারিখ :</span>
-                                        <span class="amount-box">{{ \Carbon\Carbon::parse($row->start_date)->format('d M Y') }}</span>
-                                    </div>
-                                    <div class="notice-item">
-                                        <span>নির্ধারিত মোট টাকার পরিমাণ :</span>
-                                        <span class="amount-box"> {{ number_format($row->budget_amount) }} টাকা </span>
-                                    </div>
+                            <div class="notice-card">
+                                <div class="notice-title">
+                                    নির্মাণাধীন সিনেমা / নাটকের সংক্ষিপ্ত তথ্য
                                 </div>
 
-                                <div class="col-md-6">
-                                    <div class="notice-item">
-                                        <span>নির্মাতা প্রতিষ্ঠানের নাম :</span>
-                                        <span class="amount-box">{{ $row->production_house_name }}</span>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="notice-item">
+                                            <span>প্রযোজকের নাম :</span>
+                                            <span class="amount-box">{{ $row->producer_name }}</span>
+                                        </div>
+                                        <div class="notice-item">
+                                            <span>সেবার ধরণ ও নাম :</span>
+                                            <span class="amount-box">{{ $row->service_type . ' - ' . $row->title }}</span>
+                                        </div>
+                                        <div class="notice-item">
+                                            <span>কাজ শুরুর তারিখ :</span>
+                                            <span class="amount-box">{{ \Carbon\Carbon::parse($row->start_date)->format('d M Y') }}</span>
+                                        </div>
+                                        <div class="notice-item">
+                                            <span>নির্ধারিত মোট টাকার পরিমাণ :</span>
+                                            <span class="amount-box"> {{ number_format($row->budget_amount) }} টাকা </span>
+                                        </div>
                                     </div>
-                                    <div class="notice-item">
-                                        <span> অনুমোদিত কাজের বিবরণ : </span>
-                                        <span class="amount-box">{{ $row->project_description }}</span>
-                                    </div>
-                                    <div class="notice-item">
-                                        <span>কাজ সমাপ্তির তারিখ :</span>
-                                        <span class="amount-box">{{ \Carbon\Carbon::parse($row->end_date)->format('d M Y') }}</span>
-                                    </div>
-                                    <div class="notice-item">
-                                        <span>পরিশোধিত টাকার পরিমাণ :</span>
-                                        <span class="amount-box"> {{ number_format($row->amount) }} টাকা </span>
+
+                                    <div class="col-md-6">
+                                        <div class="notice-item">
+                                            <span>নির্মাতা প্রতিষ্ঠানের নাম :</span>
+                                            <span class="amount-box">{{ $row->production_house_name }}</span>
+                                        </div>
+                                        <div class="notice-item">
+                                            <span> অনুমোদিত কাজের বিবরণ : </span>
+                                            <span class="amount-box">{{ $row->project_description }}</span>
+                                        </div>
+                                        <div class="notice-item">
+                                            <span>কাজ সমাপ্তির তারিখ :</span>
+                                            <span class="amount-box">{{ \Carbon\Carbon::parse($row->end_date)->format('d M Y') }}</span>
+                                        </div>
+                                        <div class="notice-item">
+                                            <span>পরিশোধিত টাকার পরিমাণ :</span>
+                                            <span class="amount-box"> {{ number_format($row->amount) }} টাকা </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @empty
-                <div class="carousel-item active">
-                    <div class="slide-content">
-                        <div class="notice-card text-center">
-                            কোনো তথ্য পাওয়া যায়নি
+                @empty
+                    <div class="carousel-item active">
+                        <div class="slide-content">
+                            <div class="notice-card text-center">
+                                কোনো তথ্য পাওয়া যায়নি
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endforelse
+                @endforelse
+            </div>
+
+            <!-- Controls -->
+            <a class="carousel-control-prev" href="#noticeCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#noticeCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+
         </div>
-
-        <!-- Controls -->
-        <a class="carousel-control-prev" href="#noticeCarousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </a>
-        <a class="carousel-control-next" href="#noticeCarousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </a>
-
     </div>
-</div>
 
-<!-- Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 
-</body>
-</html>
 

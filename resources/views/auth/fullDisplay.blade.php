@@ -128,7 +128,7 @@
 <body>
 
 <div class="fullscreen-carousel">
-    <div id="noticeCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+    <div id="noticeCarousel" class="carousel slide" data-ride="carousel" data-interval="{{ $interval }}">
 
         <div class="carousel-inner">
             @forelse($results as $key => $row)
