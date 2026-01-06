@@ -7,7 +7,9 @@
                 <th>Producer Name</th>
                 <th>Production House Name</th>
                 <th>Service Type</th>
-                <th>Amount</th>
+                <th>Title</th>
+                <th>Budget Amount</th>
+                <th>Pay Amount</th>
                 <th>Start Date</th>
                 <th>End Date</th>
                 <th>Status</th>
@@ -21,6 +23,8 @@
                 <td>{{ $key+1 }}</td>
                 <td>{{ $value->producer_name }}</td>
                 <td>{{ $value->production_house_name }}</td>
+                <td>{{ $value->title }}</td>
+                <td>{{ $value->budget_amount }}</td>
                 <td>{{ $value->service_type }}</td>
                 <td>{{ $value->amount }}</td>
                 <td>{{ date('d-m-Y', strtotime($value->start_date)) ?? '...' }}</td>

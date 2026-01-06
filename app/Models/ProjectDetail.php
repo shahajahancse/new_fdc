@@ -13,6 +13,8 @@ class ProjectDetail extends Model
     protected $fillable = [
         'producer_name',
         'production_house_name',
+        'title',
+        'budget_amount',
         'amount',
         'start_date',
         'end_date',
@@ -30,6 +32,8 @@ class ProjectDetail extends Model
         'id' => 'integer',
         'producer_name' => 'string',
         'production_house_name' => 'string',
+        'title' => 'string',
+        'budget_amount' => 'decimal:2',
         'amount' => 'decimal:2',
         'start_date' => 'date',
         'end_date' => 'date',

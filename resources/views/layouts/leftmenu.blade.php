@@ -18,6 +18,14 @@
         <a class="nav-link {!! Request::is('set-interval') ? 'active' : '' !!}" aria-current="page" href="{{ url('/set-interval') }}"> <i class="icon im im-icon-Home"></i> <span class="item-name">Set Interval Time</span>
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link {!! Request::is('display-slider') ? 'active' : '' !!}" aria-current="page" href="{{ url('/display-slider') }}"> <i class="icon im im-icon-Home"></i> <span class="item-name">Display View</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {!! Request::is('display') ? 'active' : '' !!}" aria-current="page" href="{{ url('/display') }}"> <i class="icon im im-icon-Home"></i> <span class="item-name">Full Display</span>
+        </a>
+    </li>
 
     {{-- ব্যবহারকারী ব্যবস্থাপনা --}}
     @if (can('user_management'))

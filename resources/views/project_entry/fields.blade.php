@@ -3,8 +3,8 @@
     <h4><strong>📋 Project Information </strong></h4>
     <hr>
     <div class="row">
-        <!-- প্রজেক্টের নাম -->
-        <div class="col-md-6">
+        <!-- প্রযোজকের নাম -->
+        <div class="col-md-4">
             <div class="form-group">
                 {!! Form::label('producer_name', 'Producer Name', ['class' => 'control-label']) !!}
                 <span style="color:red">*</span>
@@ -13,7 +13,7 @@
         </div>
 
         <!-- প্রোডাকশন হাউসের নাম -->
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="form-group">
                 {!! Form::label('production_house_name', 'Production House Name', ['class' => 'control-label']) !!}
                 <span style="color:red">*</span>
@@ -21,7 +21,25 @@
             </div>
         </div>
 
-        <!-- Amount -->
+        <!-- প্রজেক্টের নাম -->
+        <div class="col-md-4">
+            <div class="form-group">
+                {!! Form::label('title', 'Project Title', ['class' => 'control-label']) !!}
+                <span style="color:red">*</span>
+                {!! Form::text('title', null, ['class' => 'form-control', 'required' => true]) !!}
+            </div>
+        </div>
+
+        <!-- Budget Amount -->
+        <div class="col-md-3">
+            <div class="form-group">
+                {!! Form::label('budget_amount', 'Budget Amount', ['class' => 'control-label']) !!}
+                <span style="color:red">*</span>
+                {!! Form::number('budget_amount', null, ['class' => 'form-control', 'required' => true, 'step' => '0.01']) !!}
+            </div>
+        </div>
+
+        {{-- Pay Amount --}}
         <div class="col-md-3">
             <div class="form-group">
                 {!! Form::label('amount', 'Amount', ['class' => 'control-label']) !!}
@@ -29,6 +47,25 @@
                 {!! Form::number('amount', null, ['class' => 'form-control', 'required' => true, 'step' => '0.01']) !!}
             </div>
         </div>
+
+        {{-- <!-- সেবা ধরন --}}
+        <div class="col-md-3">
+            <div class="form-group">
+                {!! Form::label('service_type', 'Service Type', ['class' => 'control-label']) !!}
+                <span style="color:red">*</span>
+                {!! Form::select('service_type', ['film' => 'Film', 'drama' => 'Drama', 'docufilm' => 'Docu Film', 'realityshow' => 'Reality Show'], null, ['class' => 'form-control', 'placeholder' => 'Select Service Type', 'required' => true]) !!}
+            </div>
+        </div>
+
+        {{-- <!-- Status --}}
+        <div class="col-md-3">
+            <div class="form-group">
+                {!! Form::label('status', 'Status', ['class' => 'control-label']) !!}
+                <span style="color:red">*</span>
+                {!! Form::select('status', ['Enabled' => 'Enabled', 'Disabled' => 'Disabled'], null, ['class' => 'form-control', 'placeholder' => 'Select Status', 'required' => true]) !!}
+            </div>
+        </div>
+
 
         <!-- Start Date -->
         <div class="col-md-3">
@@ -48,23 +85,6 @@
             </div>
         </div>
 
-        {{-- <!-- Status --}}
-        <div class="col-md-3">
-            <div class="form-group">
-                {!! Form::label('status', 'Status', ['class' => 'control-label']) !!}
-                <span style="color:red">*</span>
-                {!! Form::select('status', ['Enabled' => 'Enabled', 'Disabled' => 'Disabled'], null, ['class' => 'form-control', 'placeholder' => 'Select Status', 'required' => true]) !!}
-            </div>
-        </div>
-
-        {{-- <!-- সেবা ধরন --}}
-        <div class="col-md-6">
-            <div class="form-group">
-                {!! Form::label('service_type', 'Service Type', ['class' => 'control-label']) !!}
-                <span style="color:red">*</span>
-                {!! Form::textarea('service_type', null, ['class' => 'form-control', 'required' => true, 'rows' => 2]) !!}
-            </div>
-        </div>
         {{-- <!-- প্রজেক্টের বিবরণ --}}
         <div class="col-md-6">
             <div class="form-group">

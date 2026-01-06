@@ -19,6 +19,8 @@ use App\Http\Controllers\FrontendController;
 
 Auth::routes();
 Route::get('/', [FrontendController::class, 'index']);
+Route::get('/display', [App\Http\Controllers\FrontendController::class, 'fullDisplay']);
+
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth');
 Route::get('/project-entry', [App\Http\Controllers\HomeController::class, 'projectEntry'])->middleware('auth');
 Route::post('/project-store', [App\Http\Controllers\HomeController::class, 'projectStore'])->middleware('auth')->name('project.entry.store');
@@ -33,6 +35,7 @@ Route::get('/set-entry', [App\Http\Controllers\HomeController::class, 'setEntry'
 Route::post('/set-store', [App\Http\Controllers\HomeController::class, 'setStore'])->middleware('auth')->name('set.entry.store');
 Route::get('/set-edit/{id}', [App\Http\Controllers\HomeController::class, 'setEdit'])->middleware('auth')->name('set.edit');
 Route::put('/set-update/{id}', [App\Http\Controllers\HomeController::class, 'setUpdate'])->middleware('auth')->name('set.update');
+Route::get('/display-slider', [App\Http\Controllers\HomeController::class, 'displayView'])->middleware('auth');
 
 
 

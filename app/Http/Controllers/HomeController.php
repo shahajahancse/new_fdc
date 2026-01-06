@@ -50,6 +50,8 @@ class HomeController extends Controller
         $validatedData = $request->validate([
             'producer_name' => 'required|string|max:255',
             'production_house_name' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
+            'budget_amount' => 'required|numeric',
             'amount' => 'required|numeric',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',
@@ -79,6 +81,8 @@ class HomeController extends Controller
         $validatedData = $request->validate([
             'producer_name' => 'required|string|max:255',
             'production_house_name' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
+            'budget_amount' => 'required|numeric',
             'amount' => 'required|numeric',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',
@@ -145,6 +149,16 @@ class HomeController extends Controller
 
         Flash::success('Set entry updated successfully!');
         return redirect(url('set-interval'));
+    }
+
+    public function displayView()
+    {
+        $results = ProjectDetail::where('status', 'Enabled')->get();
+
+        $setInterval = SetInterval::latest()->first();
+        $interval = !empty($setInterval->set_time) ? (int)$setInterval->set_time * 1000 : 3 * 1000;  // ms
+
+        return view('project_entry.displayView', compact('results', 'interval'));
     }
 }
 
