@@ -14,7 +14,7 @@
             /* background: #57c6e1; */
             color: #000000;
             text-shadow: 2px 1px 10px white;
-            font-size: 18px;
+            font-size: 18px;ol.
             font-family: sans-serif;
         }
 
@@ -206,13 +206,13 @@
                                         <div class="form-group row">
                                             <label class="col-sm-5 col-form-label">বিলের পরিমাণঃ</label>
                                             <div class="col-sm-7">
-                                                <div class="blue-box">{{ number_format($row->budget_amount) }} টাকা</div>
+                                                <div class="blue-box">{{ en2bn($row->budget_amount) }} টাকা</div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-5 col-form-label">পরিশোধিত টাকার পরিমাণঃ</label>
                                             <div class="col-sm-7">
-                                                <div class="blue-box">{{ number_format($row->amount) }} টাকা</div>
+                                                <div class="blue-box">{{ en2bn($row->amount) }} টাকা</div>
                                             </div>
                                         </div>
                                     </div>
