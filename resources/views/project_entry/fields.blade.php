@@ -24,7 +24,7 @@
         <!-- প্রজেক্টের নাম -->
         <div class="col-md-4">
             <div class="form-group">
-                {!! Form::label('title', 'নামঃ', ['class' => 'control-label']) !!}
+                {!! Form::label('title', 'সেবার নামঃ', ['class' => 'control-label']) !!}
                 <span style="color:red">*</span>
                 {!! Form::text('title', null, ['class' => 'form-control', 'required' => true]) !!}
             </div>
