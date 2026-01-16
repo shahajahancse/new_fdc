@@ -19,7 +19,23 @@ use App\Http\Controllers\FrontendController;
 
 Auth::routes();
 Route::get('/', [FrontendController::class, 'index']);
+Route::get('/display', [App\Http\Controllers\FrontendController::class, 'fullDisplay']);
+
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth');
+Route::get('/project-entry', [App\Http\Controllers\HomeController::class, 'projectEntry'])->middleware('auth');
+Route::post('/project-store', [App\Http\Controllers\HomeController::class, 'projectStore'])->middleware('auth')->name('project.entry.store');
+Route::get('/project-list', [App\Http\Controllers\HomeController::class, 'projectList'])->middleware('auth');
+
+Route::get('/project-edit/{id}', [App\Http\Controllers\HomeController::class, 'projectEdit'])->middleware('auth')->name('project.edit');
+Route::put('/project-update/{id}', [App\Http\Controllers\HomeController::class, 'projectUpdate'])->middleware('auth')->name('project.update');
+Route::delete('/project-destroy/{id}', [App\Http\Controllers\HomeController::class, 'projectDestroy'])->middleware('auth')->name('project.destroy');
+
+Route::get('/set-interval', [App\Http\Controllers\HomeController::class, 'setInterval'])->middleware('auth');
+Route::get('/set-entry', [App\Http\Controllers\HomeController::class, 'setEntry'])->middleware('auth');
+Route::post('/set-store', [App\Http\Controllers\HomeController::class, 'setStore'])->middleware('auth')->name('set.entry.store');
+Route::get('/set-edit/{id}', [App\Http\Controllers\HomeController::class, 'setEdit'])->middleware('auth')->name('set.edit');
+Route::put('/set-update/{id}', [App\Http\Controllers\HomeController::class, 'setUpdate'])->middleware('auth')->name('set.update');
+Route::get('/display-slider', [App\Http\Controllers\HomeController::class, 'displayView'])->middleware('auth');
 
 
 
@@ -37,47 +53,48 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])-
 
 
 
-Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login.custom');
-Route::get('lang/{locale}', [LanguageController::class, 'switch']);
 
-// Frontend Pages start here
+// Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login.custom');
+// Route::get('lang/{locale}', [LanguageController::class, 'switch']);
 
-Route::get('/', [FrontendController::class, 'index']);
-Route::get('/about_us', [FrontendController::class, 'about_us'])->name('about_us');
-Route::prefix('history-and-heritage-of-cinema')->name('historyAndHeritageOfCinema.')->group(function () {
-    Route::get('/films-released-by-decade/{decade}', [FrontendController::class, 'films_released_by_decade'])->name('films_released_by_decade');
-});
+// // Frontend Pages start here
+// Route::get('/', [FrontendController::class, 'index']);
+// Route::get('/about_us', [FrontendController::class, 'about_us'])->name('about_us');
+// Route::prefix('history-and-heritage-of-cinema')->name('historyAndHeritageOfCinema.')->group(function () {
+//     Route::get('/films-released-by-decade/{decade}', [FrontendController::class, 'films_released_by_decade'])->name('films_released_by_decade');
+// });
 
-Route::get('/service/rate-card', [FrontendController::class, 'rate_card'])->name('rate_card');
-Route::resource('noc', 'NocController');
-Route::get('/noc-search-list', [App\Http\Controllers\NocController::class, 'showSearchList'])->name('noc.search.list');
-Route::post('/noc-ajax-search', [App\Http\Controllers\NocController::class, 'ajaxSearch'])->name('noc.ajax.search');
-Route::get('/noc-download/{noc}', [App\Http\Controllers\NocController::class, 'downloadNoc'])->name('noc.download');
-
-// Frontend Pages end here
-
+// Route::get('/service/rate-card', [FrontendController::class, 'rate_card'])->name('rate_card');
+// Route::resource('noc', 'NocController');
+// Route::get('/noc-search-list', [App\Http\Controllers\NocController::class, 'showSearchList'])->name('noc.search.list');
+// Route::post('/noc-ajax-search', [App\Http\Controllers\NocController::class, 'ajaxSearch'])->name('noc.ajax.search');
+// Route::get('/noc-download/{noc}', [App\Http\Controllers\NocController::class, 'downloadNoc'])->name('noc.download');
+// // Frontend Pages end here
 
 
-include 'demo.php';
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
+// include 'demo.php';
+// /*
+// |--------------------------------------------------------------------------
+// | Web Routes
+// |--------------------------------------------------------------------------
+// |
+// | Here is where you can register web routes for your application. These
+// | routes are loaded by the RouteServiceProvider within a group which
+// | contains the "web" middleware group. Now create something great!
+// |
+// */
 
 
-Auth::routes();
-Route::get('/login/{type}', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login.custom');
-// login2, register2 pages
-Route::view('login2', 'auth.login2');
-Route::view('login3', 'auth.login3');
-Route::view('register2', 'auth.register2');
-Route::view('register3', 'auth.register3');
+// Auth::routes();
+// Route::get('/login/{type}', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login.custom');
+// // login2, register2 pages
+// Route::view('login2', 'auth.login2');
+// Route::view('login3', 'auth.login3');
+// Route::view('register2', 'auth.register2');
+// Route::view('register3', 'auth.register3');
+
+
 
 // payments
 Route::resource('makePayments', 'MakePaymentController');

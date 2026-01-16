@@ -12,7 +12,7 @@
         <div class="col-md-12">
             <div class="row">
                 <h3 class="col-md-6 pull-left">
-                    {{ __('messages.dashboard') }}
+                    Dashboard
                 </h3>
             </div>
         </div>
